@@ -75,23 +75,13 @@ class Data extends Seeder
                 'email' => $this->faker->companyEmail,
                 'telephone' => $this->faker->e164PhoneNumber,
                 'entete_sms' => $this->faker->word,
-                'solde_sms' => 50,
-                'solde_email' => 1000,
+                'solde_sms' => 100,
+                'solde_email' => 100,
                 'solde_whatsapp' => 100,
-                'solde_telegram' => 1000,
+                'solde_telegram' => 100,
+                'montant_inscription_nouveau' => 5000,
+                'montant_inscription_ancien' => 3000,
                 'taux_annuel' => round((rand(2, 8) / 100), 2),
-                'janvier' => round((rand(2, 8) / 100), 2),
-                'fevrier' => round((rand(2, 8) / 100), 2),
-                'mars' => round((rand(2, 8) / 100), 2),
-                'avril' => round((rand(2, 8) / 100), 2),
-                'mai' => round((rand(2, 8) / 100), 2),
-                'juin' => round((rand(2, 8) / 100), 2),
-                'juillet' => round((rand(2, 8) / 100), 2),
-                'aout' => round((rand(2, 8) / 100), 2),
-                'septembre' => round((rand(2, 8) / 100), 2),
-                'octobre' => round((rand(2, 8) / 100), 2),
-                'novembre' => round((rand(2, 8) / 100), 2),
-                'decembre' => round((rand(2, 8) / 100), 2),
                 'description' => $this->faker->text(rand(10, 200)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-13 month', '-12 month')->format('Y-m-d H:i:s'),
@@ -155,6 +145,7 @@ class Data extends Seeder
                         'delete' => 'false',
                         'print' => (rand(0, 1) == 0) ? 'true' : 'false',
                         'import' => (rand(0, 1) == 0) ? 'true' : 'false',
+                        'backup' => (rand(0, 1) == 0) ? 'true' : 'false',
                         'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                         'created_at' => $this->faker->dateTimeBetween('-13 month', '-12 month')->format('Y-m-d H:i:s'),
                         'updated_at' => $this->faker->dateTimeBetween('-13 month', '-12 month')->format('Y-m-d H:i:s')
@@ -172,7 +163,7 @@ class Data extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             for ($j = 1; $j <= 50; $j++) {
                 $this->Utilisateurs->save([
-                    'matricule' => $this->faker->bothify('user-#?#?#?-####'),
+                    'matricule' => $this->faker->bothify('USER-#?#?#?-#?##?#'),
                     'parametre_id' => $i,
                     'role_id' => rand(1, 8),
                     'photo' => $this->faker->imageUrl(640, 480, 'animals', true),
@@ -195,17 +186,11 @@ class Data extends Seeder
 
     function fakeEpargne()
     {
-        $operateur = ['Orange Money', 'Mobile Money', 'Association'];
         for ($i = 0; $i < 1250; $i++) {
             $this->Epargnes->save([
                 'matricule' => $this->faker->bothify('EP-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
-                'telephone_emetteur' => '',
-                'telephone_recepteur' => '',
-                'transaction_id' => $this->faker->uuid(),
-                'operateur' => $operateur[rand(0, 2)],
                 'montant' => (rand(10, 250) * 10000),
-                'etat_transaction' => 'validé',
                 'description' => $this->faker->text(rand(10, 180)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-11 month', '+15 days')->format('Y-m-d H:i:s'),
@@ -218,17 +203,11 @@ class Data extends Seeder
 
     function fakeInscription()
     {
-        $operateur = ['Orange Money', 'Mobile Money', 'Association'];
         for ($i = 0; $i < 425; $i++) {
             $this->Inscriptions->save([
                 'matricule' => $this->faker->bothify('INS--?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
-                'telephone_emetteur' => '',
-                'telephone_recepteur' => '',
-                'transaction_id' => $this->faker->uuid(),
-                'operateur' => $operateur[rand(0, 2)],
                 'montant' => (rand(10, 20) * 100),
-                'etat_transaction' => 'validé',
                 'description' => $this->faker->text(rand(10, 180)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-11 month', '-10 month')->format('Y-m-d H:i:s'),
@@ -241,17 +220,11 @@ class Data extends Seeder
 
     function fakeAgape()
     {
-        $operateur = ['Orange Money', 'Mobile Money', 'Association'];
         for ($i = 0; $i < 425; $i++) {
             $this->Agapes->save([
-                'matricule' => $this->faker->bothify('AGP--?#?#?#?-?#?#?#?'),
+                'matricule' => $this->faker->bothify('AGP-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
-                'telephone_emetteur' => '',
-                'telephone_recepteur' => '',
-                'transaction_id' => $this->faker->uuid(),
-                'operateur' => $operateur[rand(0, 2)],
                 'montant' => (rand(10, 15) * 100),
-                'etat_transaction' => 'validé',
                 'description' => $this->faker->text(rand(10, 180)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-11 month', '+5 days')->format('Y-m-d H:i:s'),
@@ -264,17 +237,11 @@ class Data extends Seeder
 
     function fakeTontine()
     {
-        $operateur = ['Orange Money', 'Mobile Money', 'Association'];
         for ($i = 0; $i < 2500; $i++) {
             $this->Tontines->save([
-                'matricule' => $this->faker->bothify('TOT-?#?#?#?-?#?#?#?'),
+                'matricule' => $this->faker->bothify('TON-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
-                'telephone_emetteur' => '',
-                'telephone_recepteur' => '',
-                'transaction_id' => $this->faker->uuid(),
-                'operateur' => $operateur[rand(0, 2)],
                 'montant' => (rand(20, 500) * 1000),
-                'etat_transaction' => 'validé',
                 'description' => $this->faker->text(rand(10, 180)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-11 month', '+15 days')->format('Y-m-d H:i:s'),
@@ -293,7 +260,6 @@ class Data extends Seeder
                 'utilisateur_id' => rand(1, 150),
                 'transaction_id' => $this->faker->uuid(),
                 'montant' => (rand(50, 500) * 1000),
-                'etat_transaction' => 'validé',
                 'description' => $this->faker->text(rand(10, 180)),
                 'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
                 'created_at' => $this->faker->dateTimeBetween('-11 month', '+15 days')->format('Y-m-d H:i:s'),
@@ -308,7 +274,7 @@ class Data extends Seeder
     {
         for ($i = 0; $i < 4250; $i++) {
             $this->Emprunts->save([
-                'matricule' => $this->faker->bothify('RAM-?#?#?#?-?#?#?#?-?#?#?#?'),
+                'matricule' => $this->faker->bothify('REM-?#?#?#?-?#?#?#?-?#?#?#?'),
                 'emprunt_id' => rand(1, 1849),
                 'transaction_id' => $this->faker->uuid(),
                 'montant' => (rand(10, 50) * 1000),
@@ -324,7 +290,7 @@ class Data extends Seeder
 
     public function run() 
     {
-        /*$this->fakeCompanie();
+        $this->fakeCompanie();
         $this->fakeRoles();
         $this->fakeModules();
         $this->fakePermissions();
@@ -334,6 +300,6 @@ class Data extends Seeder
         $this->fakeEpargne();
         $this->fakeEmprunt();
         $this->fakeTontine();
-        $this->fakeRembourcement();*/
+        $this->fakeRembourcement();
     }
 }

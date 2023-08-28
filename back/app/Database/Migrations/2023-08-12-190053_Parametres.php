@@ -94,7 +94,7 @@ class Parametres extends Migration
             ],
             'solde_sms' => [
                 'type' => 'INT',
-                'default' => 10,
+                'default' => 100,
                 'null' => false,
             ],
             'solde_email' => [
@@ -112,83 +112,21 @@ class Parametres extends Migration
                 'default' => 1000,
                 'null' => false,
             ],
+            'montant_inscription_nouveau' => [
+                'type' => 'INT',
+                'default' => 3000,
+                'null' => false,
+            ],
+            'montant_inscription_ancien' => [
+                'type' => 'INT',
+                'default' => 3000,
+                'null' => false,
+            ],
             'taux_annuel' => [
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
                 'default' => 0.00,
                 'null' => false,
-            ],
-            'janvier' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'fevrier' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'mars' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'avril' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'mai' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'juin' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'juillet' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'aout' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'septembre' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'octobre' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'novembre' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
-            ],
-            'decembre' => [
-                'type' => 'DECIMAL',
-                'constraint' => '10,2',
-                'null' => false,
-                'default' => 0.00
             ],
             'description' => [
                 'type' => 'VARCHAR',
