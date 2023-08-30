@@ -41,7 +41,7 @@ class Module extends ResourceController
         ];
 
         if (!$this->validate($validations)) {
-            return $this->respond($this->response(400, "Vérifiez la conformité des champs remplis", $this->validator->getErrors()));
+            return $this->respond($this->response(408, "Vérifiez la conformité des champs remplis", $this->validator->getErrors()));
         } else {
             $json = $this->request->getJSON();
             $data = [
@@ -64,10 +64,11 @@ class Module extends ResourceController
         helper(['form', 'url']);
         $validations = [
             'nom' => 'required',
+            'sigle' => 'required',
         ];
 
         if (!$this->validate($validations)) {
-            return $this->respond($this->response(400, "Vérifiez la conformité des champs remplis", $this->validator->getErrors()));
+            return $this->respond($this->response(408, "Vérifiez la conformité des champs remplis", $this->validator->getErrors()));
         } else {
             $json = $this->request->getJSON();
             $data = [

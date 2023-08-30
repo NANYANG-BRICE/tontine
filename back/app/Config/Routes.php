@@ -18,3 +18,15 @@ $routes->post('update_module/(:any)', 'Module::update/$1');
 $routes->post('off_module/(:any)', 'Module::deseable/$1');
 $routes->post('on_module/(:any)', 'Module::enable/$1');
 $routes->post('delete_module/(:any)', 'Module::delete/$1');
+
+
+
+
+
+$routes->get('role', 'Role::index');
+$routes->get('one_role/(:any)', 'Role::show/$1');
+$routes->post('new_role', 'Role::create');
+$routes->post('update_role/(:any)', 'Role::update/$1');
+$routes->post('off_role/(:any)', 'Role::deseable/$1');
+$routes->post('on_role/(:any)', 'Role::enable/$1');
+$routes->post('delete_role/(:any)', 'Role::delete/$1');
