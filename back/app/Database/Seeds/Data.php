@@ -290,18 +290,23 @@ class Data extends Seeder
 
     public function run() 
     {
-        $this->fakeModules();
-        $this->fakeRoles();
+        $this->fakePermissions();
 
 /*
-        $this->fakeCompanie();
-        $this->fakePermissions();
         $this->fakeUtilisateur();
         $this->fakeAgape();
         $this->fakeInscription();
         $this->fakeEpargne();
         $this->fakeEmprunt();
         $this->fakeTontine();
-        $this->fakeRembourcement();*/
+        $this->fakeRembourcement();
+
+
+
+        $this->fakeModules();
+        $this->fakeRoles();
+        $this->fakeCompanie();
+        
+*/
     }
 }

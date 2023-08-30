@@ -30,3 +30,17 @@ $routes->post('update_role/(:any)', 'Role::update/$1');
 $routes->post('off_role/(:any)', 'Role::deseable/$1');
 $routes->post('on_role/(:any)', 'Role::enable/$1');
 $routes->post('delete_role/(:any)', 'Role::delete/$1');
+
+
+$routes->get('association', 'Parametre::index');
+$routes->get('one_association/(:any)', 'Parametre::show/$1');
+$routes->post('new_association', 'Parametre::create');
+$routes->post('update_association/(:any)', 'Parametre::update/$1');
+$routes->post('uploadPhoto_association/(:any)', 'Parametre::uploadPhoto/$1');
+$routes->post('off_association/(:any)', 'Parametre::deseable/$1');
+$routes->post('on_association/(:any)', 'Parametre::enable/$1');
+$routes->post('delete_association/(:any)', 'Parametre::delete/$1');
+$routes->post('addSoldeSms/(:any)', 'Parametre::addSoldeSms/$1');
+$routes->post('addSoldeEmail/(:any)', 'Parametre::addSoldeEmail/$1');
+$routes->post('addSoldeWhatsapp/(:any)', 'Parametre::addSoldeWhatsapp/$1');
+$routes->post('addSoldeTelegram/(:any)', 'Parametre::addSoldeTelegram/$1');
