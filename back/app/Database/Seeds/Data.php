@@ -100,7 +100,7 @@ class Data extends Seeder
             $this->Roles->save([
                 'nom' => $data[$i],
                 'description' => $this->faker->text(rand(10, 200)),
-                'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
+                'status' => 'actif',
                 'created_at' => $this->faker->dateTimeBetween('-13 month', '-12 month')->format('Y-m-d H:i:s'),
                 'updated_at' => $this->faker->dateTimeBetween('-13 month', '-12 month')->format('Y-m-d H:i:s')
             ]);
@@ -186,7 +186,7 @@ class Data extends Seeder
 
     function fakeEpargne()
     {
-        for ($i = 0; $i < 1250; $i++) {
+        for ($i = 0; $i < 800; $i++) {
             $this->Epargnes->save([
                 'matricule' => $this->faker->bothify('EP-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
@@ -203,7 +203,7 @@ class Data extends Seeder
 
     function fakeInscription()
     {
-        for ($i = 0; $i < 425; $i++) {
+        for ($i = 0; $i < 300; $i++) {
             $this->Inscriptions->save([
                 'matricule' => $this->faker->bothify('INS--?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
@@ -220,7 +220,7 @@ class Data extends Seeder
 
     function fakeAgape()
     {
-        for ($i = 0; $i < 425; $i++) {
+        for ($i = 0; $i < rand(50, 200); $i++) {
             $this->Agapes->save([
                 'matricule' => $this->faker->bothify('AGP-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
@@ -237,7 +237,7 @@ class Data extends Seeder
 
     function fakeTontine()
     {
-        for ($i = 0; $i < 2500; $i++) {
+        for ($i = 0; $i < rand(250, 850); $i++) {
             $this->Tontines->save([
                 'matricule' => $this->faker->bothify('TON-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
@@ -254,7 +254,7 @@ class Data extends Seeder
 
     function fakeEmprunt()
     {
-        for ($i = 0; $i < 1850; $i++) {
+        for ($i = 0; $i < rand(50, 200); $i++) {
             $this->Emprunts->save([
                 'matricule' => $this->faker->bothify('EMP-?#?#?#?-?#?#?#?'),
                 'utilisateur_id' => rand(1, 150),
@@ -290,9 +290,11 @@ class Data extends Seeder
 
     public function run() 
     {
-        $this->fakeCompanie();
-        $this->fakeRoles();
         $this->fakeModules();
+        $this->fakeRoles();
+
+/*
+        $this->fakeCompanie();
         $this->fakePermissions();
         $this->fakeUtilisateur();
         $this->fakeAgape();
@@ -300,6 +302,6 @@ class Data extends Seeder
         $this->fakeEpargne();
         $this->fakeEmprunt();
         $this->fakeTontine();
-        $this->fakeRembourcement();
+        $this->fakeRembourcement();*/
     }
 }

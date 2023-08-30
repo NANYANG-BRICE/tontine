@@ -37,6 +37,7 @@ class Module extends ResourceController
         helper(['form', 'url']);
         $validations = [
             'nom' => 'required|is_unique[role.nom]',
+            'sigle' => 'required|is_unique[role.sigle]',
         ];
 
         if (!$this->validate($validations)) {

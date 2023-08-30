@@ -8,14 +8,15 @@
 
 		<VWindow v-model="activeTab" class="mt-5 disable-tab-transition">
 
-			<!-- Email -->
-			<VWindowItem value="role">
-				<RoleInterface />
-			</VWindowItem>
 
 			<!-- SMS -->
 			<VWindowItem value="module">
 				<ModuleInterface />
+			</VWindowItem>
+
+			<!-- Email -->
+			<VWindowItem value="role">
+				<RoleInterface />
 			</VWindowItem>
 
 			<!-- Whatsapp -->
@@ -38,18 +39,18 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
+import ModuleInterface from '@/views/interfaces/parametre/module.vue';
 import ProfileInterface from '@/views/interfaces/parametre/profile.vue';
 import RoleInterface from '@/views/interfaces/parametre/role.vue';
-import ModuleInterface from '@/views/interfaces/parametre/module.vue';
 import PermissionInterface from '@/views/interfaces/parametre/permission.vue';
 import AssociationInterface from '@/views/interfaces/parametre/association.vue';
 
 const route = useRoute()
 const activeTab = ref(route.params.tab)
 const tabs = [
+	{ title: 'Modules', icon: 'mdi-notebook-edit-outline', tab: 'module', },
 	{ title: 'Profil', icon: 'mdi-monitor-account', tab: 'profil', },
 	{ title: 'Rôles', icon: 'mdi-account-hard-hat-outline', tab: 'role', },
-	{ title: 'Modules', icon: 'mdi-notebook-edit-outline', tab: 'module', },
 	{ title: 'Permissions', icon: 'mdi-shield-account-outline', tab: 'permission', },
 	{ title: 'Associations', icon: 'mdi-home-group', tab: 'association', },
 ]
