@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\Roles;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\RESTful\ResourceController;
@@ -21,7 +22,7 @@ class Role extends ResourceController
 
     public function index()
     {
-        return $this->respond($this->roles->findAll());
+        return $this->respond($this->roles->orderBy('created_at', 'DESC')->orderBy('nom', 'ASC')->orderBy('status', 'DESC')->findAll());
     }
 
 
@@ -88,9 +89,9 @@ class Role extends ResourceController
             'status' => 'inactif'
         ];
         if ($this->roles->where('id', $id)->set($data)->update() === false) {
-            return $this->respond($this->response(409, "Impossible de désactiver le rôle ".$account['nom'], ""));
+            return $this->respond($this->response(409, "Impossible de désactiver le rôle " . $account['nom'], ""));
         }
-        return $this->respond($this->response(200, "Le rôle ".$account['nom']." a bien été désactivé", ""));
+        return $this->respond($this->response(200, "Le rôle " . $account['nom'] . " a bien été désactivé", ""));
     }
 
 
@@ -101,9 +102,9 @@ class Role extends ResourceController
             'status' => 'actif'
         ];
         if ($this->roles->where('id', $id)->set($data)->update() === false) {
-            return $this->respond($this->response(409, "Impossible de réactiver le rôle ".$account['nom'], ""));
+            return $this->respond($this->response(409, "Impossible de réactiver le rôle " . $account['nom'], ""));
         }
-        return $this->respond($this->response(200, "Le rôle ".$account['nom']." a bien été réactivé", ""));
+        return $this->respond($this->response(200, "Le rôle " . $account['nom'] . " a bien été réactivé", ""));
     }
 
 
@@ -111,8 +112,8 @@ class Role extends ResourceController
     {
         $account = $this->roles->find($id);
         if ($this->roles->delete($id) === false) {
-            return $this->respond($this->response(409, "Impossible de supprimer le rôle ".$account['nom'], ""));
+            return $this->respond($this->response(409, "Impossible de supprimer le rôle " . $account['nom'], ""));
         }
-        return $this->respond($this->response(200, "Le rôle ".$account['nom']." a bien été supprimé", ""));
+        return $this->respond($this->response(200, "Le rôle " . $account['nom'] . " a bien été supprimé", ""));
     }
 }

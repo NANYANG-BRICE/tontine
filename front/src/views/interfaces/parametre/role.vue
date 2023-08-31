@@ -8,7 +8,7 @@
           <VDialog v-model="ajouter" persistent class="v-dialog-lg">
             <!-- Dialog Activator -->
             <template #activator="{ props }">
-              <VBtn color="primary" type="submit" size="small" class="mx-2 mt-1" v-bind="props" disabled>
+              <VBtn color="primary" type="submit" size="small" class="mx-2 mt-1" v-bind="props" >
                 <VIcon icon="mdi-add-circle-outline" class="d-sm-none" />
                 <span class="d-none d-sm-block">
                   Ajouter <v-icon aria-hidden="false" class="mx-1">mdi-add-circle-outline</v-icon>
@@ -17,18 +17,13 @@
             </template>
 
             <!-- Dialog Content -->
-            <VCard title="Nouveau role" subtitle="Hello guys veillez renseigné les informations de votre role.">
+            <VCard title="Nouveau role" subtitle="Hello guys veillez renseigné les informations de votre rôle.">
               <VForm ref="new_role" @submit.prevent="new_role">
                 <VCardText>
                   <VRow>
-                    <VCol md="6" cols="12">
+                    <VCol md="12" cols="12">
                       <VTextField v-model="role.nom" :rules="[rules.required, rules.min]" label="Nom" density="compact"
                         prepend-inner-icon="mdi-book-settings-outline" />
-                    </VCol>
-
-                    <VCol md="6" cols="12">
-                      <VTextField v-model="role.sigle" :rules="[rules.required, rules.min]" label="Sigle"
-                        density="compact" prepend-inner-icon="mdi-book-open-page-variant-outline" />
                     </VCol>
 
                     <VCol cols="12">
@@ -122,35 +117,28 @@
           <template #item.actions="{ item }">
             <div class="d-flex gap-1">
 
-              <IconBtn @click="get(item.raw)" disabled>
+              <IconBtn @click="get(item.raw)" >
                 <VTooltip activator="parent" location="top">
                   Modier le role {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-pencil-outline" />
               </IconBtn>
 
-              <IconBtn @click="desable(item.raw)" :class="item.raw.status != 'actif' ? 'd-none' : ''" disabled>
+              <IconBtn @click="desable(item.raw)" :class="item.raw.status != 'actif' ? 'd-none' : ''" >
                 <VTooltip activator="parent" location="top">
                   Désactiver le role {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-remove-circle-outline" />
               </IconBtn>
 
-              <IconBtn @click="enable(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''" disabled>
+              <IconBtn @click="enable(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''" >
                 <VTooltip activator="parent" location="top">
                   Réactiver le role {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-success-circle-outline" />
               </IconBtn>
 
-              <IconBtn @click="update(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''">
-                <VTooltip activator="parent" location="top">
-                  Réactiver le role {{ item.raw.nom }}
-                </VTooltip>
-                <VIcon icon="mdi-success-circle-outline" />
-              </IconBtn>
-
-              <IconBtn @click="deletes(item.raw)" disabled>
+              <IconBtn @click="deletes(item.raw)" >
                 <VTooltip activator="parent" location="top">
                   Supprimer le role {{ item.raw.nom }}
                 </VTooltip>
@@ -187,7 +175,7 @@ export default {
     const headers = [
       { title: 'ID', sortable: false, key: 'id', },
       { title: 'NOM', key: 'nom', },
-      { title: 'SIGLE', key: 'sigle', },
+      { title: 'DESCRIPTION', key: 'description', },
       { title: 'STATUT', key: 'status', },
       { title: 'DATE DE CREATION', key: 'created_at', },
       { title: 'ACTIONS', sortable: false, key: 'actions', },
@@ -223,7 +211,6 @@ export default {
       role: {
         id: '',
         nom: '',
-        sigle: '',
         description: '',
       },
       rules: {
@@ -255,7 +242,6 @@ export default {
             if (result.isConfirmed) {
               axios.post('new_role/', {
                 nom: this.role.nom,
-                sigle: this.role.sigle,
                 description: this.role.description
               }).then((response) => {
                 if (response.data.status === 408) {
@@ -389,7 +375,7 @@ export default {
               this.toast.error(response.data.alert, { position: 'top-right', duration: 5000 });
             } else if (response.data.status === 200) {
               this.getroles();
-              this.toast.success(response.data.alert, { position: 'top-right', duration: 5000 });
+              this.toast.info(response.data.alert, { position: 'top-right', duration: 5000 });
             }
           });
         }
