@@ -161,7 +161,7 @@ class Data extends Seeder
     function fakeUtilisateur()
     {
         for ($i = 1; $i <= 3; $i++) {
-            for ($j = 1; $j <= 50; $j++) {
+            for ($j = 1; $j <= rand(15, 45); $j++) {
                 $this->Utilisateurs->save([
                     'matricule' => $this->faker->bothify('USER-#?#?#?-#?##?#'),
                     'parametre_id' => $i,
@@ -171,7 +171,7 @@ class Data extends Seeder
                     'prenom' => $this->faker->firstName,
                     'sexe' => (rand(0, 1) == 0) ? 'masculin' : 'feminin',
                     'email' => (rand(0, 1) == 0) ? $this->faker->freeEmail : $this->faker->companyEmail(),
-                    'telephone' => $this->faker->e164PhoneNumber,
+                    'telephone' => '2376'.rand(55000000, 99999999),
                     'est_ancien' => (rand(0, 1) == 0) ? 'oui' : 'non',
                     'description' => $this->faker->text(rand(10, 180)),
                     'status' => (rand(0, 1) == 0) ? 'actif' : 'inactif',
@@ -290,10 +290,12 @@ class Data extends Seeder
 
     public function run() 
     {
-        $this->fakePermissions();
+        $this->fakeUtilisateur();
+
+
+
 
 /*
-        $this->fakeUtilisateur();
         $this->fakeAgape();
         $this->fakeInscription();
         $this->fakeEpargne();
@@ -306,7 +308,9 @@ class Data extends Seeder
         $this->fakeModules();
         $this->fakeRoles();
         $this->fakeCompanie();
+        $this->fakePermissions();
         
+php spark db:seed Data
 */
     }
 }
