@@ -32,6 +32,9 @@ $routes->post('on_role/(:any)', 'Role::enable/$1');
 $routes->post('delete_role/(:any)', 'Role::delete/$1');
 
 
+
+
+
 $routes->get('association', 'Parametre::index');
 $routes->get('one_association/(:any)', 'Parametre::show/$1');
 $routes->post('new_association', 'Parametre::create');
@@ -44,3 +47,12 @@ $routes->post('addSoldeSms/(:any)', 'Parametre::addSoldeSms/$1');
 $routes->post('addSoldeEmail/(:any)', 'Parametre::addSoldeEmail/$1');
 $routes->post('addSoldeWhatsapp/(:any)', 'Parametre::addSoldeWhatsapp/$1');
 $routes->post('addSoldeTelegram/(:any)', 'Parametre::addSoldeTelegram/$1');
+
+
+
+
+
+$routes->get('permission', 'Permission::index');
+$routes->post('off_permission/(:any)', 'Permission::deseable/$1');
+$routes->post('on_permission/(:any)', 'Permission::enable/$1');
+$routes->post('update_permission/(:any)', 'Permission::update/$1');
