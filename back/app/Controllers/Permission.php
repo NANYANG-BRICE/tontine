@@ -64,23 +64,10 @@ class Permission extends ResourceController
             'import' => $json->import,
             'backup' => $json->backup
         ];
-
-        $data = $this->permission
-            ->join('parametre', 'parametre.id = permission.parametre_id')
-            ->join('role', 'role.id = permission.role_id')
-            ->join('module', 'module.id = permission.module_id')
-            ->select('permission.*')
-            ->select('module.nom as module, role.nom as role, parametre.raison_sociale as association')
-            ->where('permission.id', $id)
-            ->orderBy('association', 'ASC')
-            ->orderBy('role', 'ASC')
-            ->orderBy('module', 'ASC')
-            ->findAll();
-
         if ($this->permission->where('id', $id)->set($data)->update() === false) {
-            return $this->respond($this->response(409, "Impossible de modifier la permission relative au role pour le module sur l'association ", ""));
+            return $this->respond($this->response(409, "Impossible de modifier cette permission", ""));
         }
-        return $this->respond($this->response(200, "La permission relative au role pour le module sur l'association a été modifiée avec succès", ""));
+        return $this->respond($this->response(200, "La permission a été modifiée avec succès", ""));
     }
 
 
