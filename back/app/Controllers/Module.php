@@ -21,7 +21,7 @@ class Module extends ResourceController
 
     public function index()
     {
-        return $this->respond($this->modules->findAll());
+        return $this->respond($this->modules->orderBy('created_at', 'DESC')->orderBy('nom', 'ASC')->findAll());
     }
 
 
@@ -36,8 +36,8 @@ class Module extends ResourceController
     {
         helper(['form', 'url']);
         $validations = [
-            'nom' => 'required|is_unique[role.nom]',
-            'sigle' => 'required|is_unique[role.sigle]',
+            'nom' => 'required|is_unique[module.nom]',
+            'sigle' => 'required|is_unique[module.sigle]',
         ];
 
         if (!$this->validate($validations)) {

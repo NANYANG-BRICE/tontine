@@ -8,7 +8,7 @@
           <VDialog v-model="ajouter" persistent class="v-dialog-lg">
             <!-- Dialog Activator -->
             <template #activator="{ props }">
-              <VBtn color="primary" type="submit" size="small" class="mx-2 mt-1" v-bind="props" disabled>
+              <VBtn color="primary" type="submit" size="small" class="mx-2 mt-1" v-bind="props" >
                 <VIcon icon="mdi-add-circle-outline" class="d-sm-none" />
                 <span class="d-none d-sm-block">
                   Ajouter <v-icon aria-hidden="false" class="mx-1">mdi-add-circle-outline</v-icon>
@@ -122,35 +122,28 @@
           <template #item.actions="{ item }">
             <div class="d-flex gap-1">
 
-              <IconBtn @click="get(item.raw)" disabled>
+              <IconBtn @click="get(item.raw)" >
                 <VTooltip activator="parent" location="top">
                   Modier le module {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-pencil-outline" />
               </IconBtn>
 
-              <IconBtn @click="desable(item.raw)" :class="item.raw.status != 'actif' ? 'd-none' : ''" disabled>
+              <IconBtn @click="desable(item.raw)" :class="item.raw.status != 'actif' ? 'd-none' : ''" >
                 <VTooltip activator="parent" location="top">
                   Désactiver le module {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-remove-circle-outline" />
               </IconBtn>
 
-              <IconBtn @click="enable(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''" disabled>
+              <IconBtn @click="enable(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''" >
                 <VTooltip activator="parent" location="top">
                   Réactiver le module {{ item.raw.nom }}
                 </VTooltip>
                 <VIcon icon="mdi-success-circle-outline" />
               </IconBtn>
 
-              <IconBtn @click="update(item.raw)" :class="item.raw.status != 'inactif' ? 'd-none' : ''">
-                <VTooltip activator="parent" location="top">
-                  Réactiver le module {{ item.raw.nom }}
-                </VTooltip>
-                <VIcon icon="mdi-success-circle-outline" />
-              </IconBtn>
-
-              <IconBtn @click="deletes(item.raw)" disabled>
+              <IconBtn @click="deletes(item.raw)" >
                 <VTooltip activator="parent" location="top">
                   Supprimer le module {{ item.raw.nom }}
                 </VTooltip>
