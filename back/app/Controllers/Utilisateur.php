@@ -45,7 +45,7 @@ class Utilisateur extends ResourceController
             ->join('parametre', 'parametre.id = utilisateur.parametre_id ')
             ->join('role', 'role.id = utilisateur.role_id ')
             ->select('utilisateur.*')
-            ->select('role.nom as nom_role, parametre.nom as nom_utilisateur, parametre.raison_sociale')
+            ->select('role.nom as nom_role, parametre.nom as association, parametre.raison_sociale')
             ->where('parametre.status', 'actif')
             ->findAll();
         return $this->respond($data);
